@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 32px;
+        }
+
+        .logo-text h1 {
+            color: white;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 8px;
+        }
+
+            nav a {
+                color: white;
+                text-decoration: none;
+                padding: 10px 20px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                font-weight: 500;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+                nav a:hover {
+                    background: rgba(255, 255, 255, 0.15);
+                    transform: translateY(-2px);
+                }
+
+                nav a.active {
+                    background: rgba(255, 255, 255, 0.2);
+                }
+
+        /* Main Content */
+        .main-container {
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .content-wrapper {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            padding: 35px;
+            min-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+            footer p {
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            .header-content
+
+        {
+            flex-direction: column;
+            height: auto;
+            padding: 15px 20px;
+            gap: 15px;
+        }
+
+        nav {
+            width: 100%;
+            flex-direction: column;
+        }
+
+            nav a {
+                width: 100%;
+                justify-content: center;
+            }
+
+        .logo-text h1 {
+            font-size: 18px;
+        }
+
+        .content-wrapper {
+            padding: 20px;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">🏥</div>
+                <div class="logo-text">
+                    <h1>Hospital Management System</h1>
+                    <p>Healthcare Excellence</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/Home/Index" class="active">
+                    <span>🏠</span> Home
+                </a>
+                <a href="/Patient/PatientRegister">
+                    <span>➕</span> Register Patient
+                </a>
+                <a href="/Patient/PatientList">
+                    <span>📋</span> Patient List
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Hospital Management System. All rights reserved.</p>
+        <p style="font-size: 12px; margin-top: 8px; opacity: 0.8;">Providing Quality Healthcare Management Solutions</p>
+    </footer>
+</body>
+</html>

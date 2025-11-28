@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model Hospital_Management_System.Models.Patient
+
+<h2>Patient Details</h2>
+
+<p><strong>Name:</strong> @Model.FullName</p>
+<p><strong>Age:</strong> @Model.Age</p>
+<p><strong>Address:</strong> @Model.Address</p>
+<p><strong>Contact:</strong> @Model.ContactNumber</p>
+<p><strong>Condition:</strong> @Model.MedicalCondition</p>
+
+<a href="/Patient/PatientList">Back to list</a>

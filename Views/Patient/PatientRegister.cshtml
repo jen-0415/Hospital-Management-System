@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model Hospital_Management_System.Models.Patient
+
+<h2>Register New Patient</h2>
+
+<form method="post">
+    <label>Full Name</label><br />
+    <input type="text" name="FullName" required /><br /><br />
+
+    <label>Age</label><br />
+    <input type="number" name="Age" required /><br /><br />
+
+    <label>Address</label><br />
+    <input type="text" name="Address" required /><br /><br />
+
+    <label>Contact Number</label><br />
+    <input type="text" name="ContactNumber" required /><br /><br />
+
+    <label>Medical Condition</label><br />
+    <input type="text" name="MedicalCondition" required /><br /><br />
+
+    <button type="submit">Submit</button>
+</form>
