@@ -4,23 +4,290 @@
 
 @model Hospital_Management_System.Models.Patient
 
-<h2>Register New Patient</h2>
+<style>
+    .page-header {
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #2e7d32;
+    }
 
-<form method="post">
-    <label>Full Name</label><br />
-    <input type="text" name="FullName" required /><br /><br />
+        .page-header h2 {
+            color: #1b5e20;
+            font-size: 32px;
+            font-weight: 600;
+            margin: 0;
+        }
 
-    <label>Age</label><br />
-    <input type="number" name="Age" required /><br /><br />
+        .page-header p {
+            color: #666;
+            margin-top: 8px;
+            font-size: 15px;
+        }
 
-    <label>Address</label><br />
-    <input type="text" name="Address" required /><br /><br />
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-    <label>Contact Number</label><br />
-    <input type="text" name="ContactNumber" required /><br /><br />
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        margin-bottom: 25px;
+    }
 
-    <label>Medical Condition</label><br />
-    <input type="text" name="MedicalCondition" required /><br /><br />
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
 
-    <button type="submit">Submit</button>
-</form>
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+            .form-group label .required {
+                color: #d32f2f;
+                font-size: 16px;
+            }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+            .form-group input:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: #2e7d32;
+                box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+            }
+
+            .form-group input:hover,
+            .form-group textarea:hover {
+                border-color: #66bb6a;
+            }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+    .form-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .btn {
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+        color: white;
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+        }
+
+    .btn-secondary {
+        background: white;
+        color: #666;
+        border: 2px solid #e0e0e0;
+    }
+
+        .btn-secondary:hover {
+            background: #f5f5f5;
+            border-color: #bdbdbd;
+        }
+
+    .input-icon {
+        font-size: 12px;
+        color: #888;
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .form-grid
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    }
+
+    /* Input validation styles */
+    .form-group input:invalid:not(:placeholder-shown),
+    .form-group textarea:invalid:not(:placeholder-shown) {
+        border-color: #f44336;
+    }
+
+    .form-group input:valid:not(:placeholder-shown),
+    .form-group textarea:valid:not(:placeholder-shown) {
+        border-color: #4caf50;
+    }
+
+    .form-group select {
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: white;
+        cursor: pointer;
+    }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        .form-group select:hover {
+            border-color: #66bb6a;
+        }
+</style>
+
+<div class="form-container">
+    <div class="page-header">
+        <h2>Register New Patient</h2>
+        <p>Please fill in all required information to register a new patient</p>
+    </div>
+
+    <form method="post">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="PatientID">
+                    Patient ID <span class="required">*</span>
+                </label>
+                <input type="text"
+                       id="PatientID"
+                       name="PatientID"
+                       placeholder="Enter patient ID"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="FullName">
+                    Full Name <span class="required">*</span>
+                </label>
+                <input type="text"
+                       id="FullName"
+                       name="FullName"
+                       placeholder="Enter full name"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="Age">
+                    Age <span class="required">*</span>
+                </label>
+                <input type="number"
+                       id="Age"
+                       name="Age"
+                       placeholder="Enter age"
+                       min="0"
+                       max="150"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="Gender">
+                    Gender <span class="required">*</span>
+                </label>
+                <select id="Gender"
+                        name="Gender"
+                        required>
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+
+            <div class="form-group full-width">
+                <label for="Address">
+                    Address <span class="required">*</span>
+                </label>
+                <input type="text"
+                       id="Address"
+                       name="Address"
+                       placeholder="Enter complete address"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="ContactNumber">
+                    Contact Number <span class="required">*</span>
+                </label>
+                <input type="tel"
+                       id="ContactNumber"
+                       name="ContactNumber"
+                       placeholder="e.g., 09XX-XXX-XXXX"
+                       pattern="[0-9+\-\s()]+"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="MedicalCondition">
+                    Medical Condition <span class="required">*</span>
+                </label>
+                <input type="text"
+                       id="MedicalCondition"
+                       name="MedicalCondition"
+                       placeholder="Enter medical condition"
+                       required />
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="/Patient/PatientList" class="btn btn-secondary">
+                 Cancel
+            </a>
+            <button type="submit" class="btn btn-primary">
+                 Register Patient
+            </button>
+        </div>
+    </form>
+</div>
