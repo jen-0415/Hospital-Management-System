@@ -6,12 +6,12 @@ namespace Hospital_Management_System.Controllers
     {
         public IActionResult Index()
         {
-            return View();   // Loads Views/Home/Index.cshtml
+            return View();
         }
 
         public IActionResult Privacy()
         {
-            return View();   // Loads Views/Home/Privacy.cshtml
+            return View();  
         }
     }
 }
