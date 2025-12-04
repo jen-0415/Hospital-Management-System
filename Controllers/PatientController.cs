@@ -13,19 +13,16 @@ namespace Hospital_Management_System.Controllers
             _context = context;
         }
 
-        // LIST
         public IActionResult PatientList()
         {
             return View(_context.Patients);
         }
 
-        // REGISTER FORM
         public IActionResult PatientRegister()
         {
             return View();
         }
 
-        // POST: REGISTER
         [HttpPost]
         public IActionResult PatientRegister(Patient patient)
         {
@@ -35,7 +32,6 @@ namespace Hospital_Management_System.Controllers
             return RedirectToAction("PatientList");
         }
 
-        // DETAILS
         public IActionResult PatientDetails(int id)
         {
             var patient = _context.Patients.FirstOrDefault(p => p.Id == id);
