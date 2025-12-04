@@ -17,23 +17,24 @@ Prerequisites
 - .NET Core SDK 6.0 or later
 - ASP.NET Core Runtime
 
+Project Structure:
 Hospital_Management_System/
 ├── Controllers/
 │   ├── HomeController.cs
 │   └── PatientController.cs
 ├── Models/
-│   └── ErrorViewModel.cs
+│   ├── ErrorViewModel.cs
 │   └── Patient.cs
 ├── Views/
 │   ├── Home/
-│   │   └── Index.cshtml
+│   │   ├── Index.cshtml
 │   │   └── Privacy.cshtml
 │   ├── Patient/
 │   │   ├── PatientRegister.cshtml
 │   │   ├── PatientList.cshtml
 │   │   └── PatientDetails.cshtml
 │   └── Shared/
-│       └── _Layout.cshtml
+│       ├── _Layout.cshtml
 │       └── _Validation.cshtml
 ├── wwwroot/
 │   └── css/
